@@ -1,32 +1,25 @@
 <?php
-use App\Controller\PostsController;
+session_start();
 
 define('ROOT', dirname(__DIR__));
 require ROOT . '/vendor/autoload.php';
-
-$app = App::getInstance();
-$posts = $app->getTable('Post')->all();
-
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
 } else {
-    $page = 'home';
+    $page = 'posts.index';
 }
+$page = explode('.', $page);
+if ($page[0] === 'admin')
+{
+    $controller = '\App\Controller\Admin\\' . ucfirst($page[1]) . 'Controller';
+    $action = $page[2];
+} else {
+    $action = $page[1];
+    $controller = '\App\Controller\\' . ucfirst($page[0]) . 'Controller';
+}
+$controller = new $controller();
+$controller->$action();
 
-ob_start();
-if ($page === 'home') {
-    $controller = new PostsController();
-    $controller->index();   
-    die();
-}elseif ($page === 'post.show') {
-    require ROOT . '/pages/posts/show.php';
-}elseif ($page === 'post.categorie') {
-    require ROOT . '/pages/posts/categorie.php';
-}elseif ($page === 'login') {
-    require ROOT . '/pages/users/login.php';
-}
-$content = ob_get_clean();
-require ROOT . '/pages/templates/default.php';
 
 
 

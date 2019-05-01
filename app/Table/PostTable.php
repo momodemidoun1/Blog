@@ -36,17 +36,16 @@ class PostTable extends Table
     }
 
     /**
-     * lastByCategory Retrieve all posts from a demanded category
-     * @param $categoory_id
+     * @param int $category_id
      * @return array
      */
-    public function lastByCategory(int $categoory_id): array
+    public function lastByCategory(int $category_id): array
     {
         return $this->query('
                 SELECT post.id, post.titre, post.contenu, post.date, category.titre as categorie
                 FROM post
                     LEFT JOIN category ON post.category_id = category.id
-                    WHERE post.category_id = ?', [$categoory_id]);
+                    WHERE post.category_id = ?', [$category_id]);
 
     }
 

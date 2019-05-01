@@ -10,8 +10,7 @@ class App
     private $db_instance;
 
     private function __construct()
-    {
-    }
+    { }
 
     /**
      * geInstance return a singleton of the class App
@@ -20,10 +19,10 @@ class App
      */
     public static function getInstance(): App
     {
-       if (is_null(self::$_instance)) {
-          self::$_instance = new App();
-       }
-       return self::$_instance;
+        if (is_null(self::$_instance)) {
+            self::$_instance = new App();
+        }
+        return self::$_instance;
     }
 
     /**
@@ -52,20 +51,4 @@ class App
         }
         return $this->db_instance;
     }
-
-    public function forbidden()
-    {
-        header('HTTP/1.0 403 Forbidden');
-        die('Access denied');
-
-    }
-
-    public function notFound()
-    {
-        header('HTTP/1.0 404 Not Found');
-        die('Page introuvable');
-
-
-    }
-
 }

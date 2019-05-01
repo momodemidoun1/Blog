@@ -1,13 +1,3 @@
-<?php
-
-require ROOT . '/vendor/autoload.php';
-
-$app = App::getInstance();
-$categories = $app->getTable('Category')->all();
-$posts = $app->getTable('Post')->last();
-
-?>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
