@@ -1,13 +1,3 @@
-<?php
-
-require dirname(dirname(__DIR__)). '/vendor/autoload.php';
-
-$app = App::getInstance();
-$categorie = $app->getTable('Category')->find($_GET['id']);
-$posts = $app->getTable('Post')->lastByCategory($_GET['id']);
-
-$categories = $app->getTable('Category')->all();
-?>
 <div class="container">
     <div class="row">
         <div class="col-sm-8">

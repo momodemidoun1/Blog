@@ -25,11 +25,11 @@ class DBAuth
     }
 
     /**
-     * @param $username
-     * @param $password
+     * @param string $username
+     * @param string $password
      * @return bool
      */
-    public function login($username, $password): bool
+    public function login(string $username, string $password): bool
     {
         $user = $this->db->prepare("SELECT * FROM users WHERE username =?", [$username],null, true);
         if ($user) {
