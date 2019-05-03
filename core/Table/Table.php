@@ -27,14 +27,12 @@ class Table
 
     }
 
+
     /**
-     * query
-     *
-     * @param  string $statement
-     * @param  array $attributes
-     * @param  bool $one
-     *
-     * @return void
+     * @param string $statement
+     * @param array|null $attributes
+     * @param bool $one
+     * @return array|bool|mixed
      */
     public function query(string $statement, array $attributes = null, bool $one = false)
     {
@@ -82,17 +80,14 @@ class Table
      */
     public function create(array $fields): bool
     {
-        \dump($fields);
         $sql_parts = [];
         $attributes = [];
         foreach($fields as $k => $v) {
             $sql_parts[] = $k . ' = ?';
             $attributes[] = $v;
         }
-        \dump($attributes);
         
         $sql_parts = implode(',', $sql_parts);
-        \dump($sql_parts);
         return $this->query('INSERT INTO ' . $this->table . ' SET ' . $sql_parts , $attributes, true);
     }
 
@@ -132,7 +127,6 @@ class Table
      */
     public function lastInsertId(): string
     {
-        dump($this->db);
         return $this->db->lastInsertId();
     }
 }
