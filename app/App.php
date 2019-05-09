@@ -9,6 +9,11 @@ class App
     private static $_instance;
     private $db_instance;
 
+    /**
+     * __construct class App is a Singleton class therefore should have a private class
+     *
+     * @return void
+     */
     private function __construct()
     { }
 
@@ -27,7 +32,7 @@ class App
 
     /**
      * geTable a factory for creating new Tables
-     *
+     * Factory for tables
      * @param string $name
      * @return mixed
      */
@@ -39,7 +44,7 @@ class App
     }
 
     /**
-     * getDb
+     * getDb Singleton for the MysqlDatabase
      *
      * @return MysqlDatabase
      */
